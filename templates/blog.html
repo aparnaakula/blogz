@@ -2,24 +2,25 @@
 {% block content %}
 
 
-<a href = "/blog">Main blog Page</a>
+<h1 class="padding">Blog posts!</h1>
 
-<a href="/newpost">Add a Blog Entry</a>
-
-<center><h1>Build a blog</h1></center>
-
-    {% for entry in all_entries %}
-        <li>
+    {% for post in posts %}
+        <li class="padding">
             <h1>
-                <a href="/blog?id={{ entry.id }}">{{ entry.title }}</a>
-            </h1>
-            <h3>{{ entry.body }}</h3>          
+                <a href="/blog?id={{ post.id }}">{{ post.title }}</a> 
+                <!--post = Blog.query.filter_by(id=entry_id).first()
+                posts = Blog.query.order_by(Blog.pub_date.desc()) -->
 
+            </h1>
+            <h3>{{post.body}}</h3>
+
+          
         </li>
-        <hr>
+        <p class="padding">Posted by: <a href="/blog?userid={{post.owner_id}}">{{ post.owner.username }}</a></p>
+        
 
     {% endfor %}
 
 
 {% endblock %}
-  
+ 
